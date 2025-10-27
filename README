@@ -1,0 +1,60 @@
+# 🌍 Multi-Region Website Deployment with Load Balancing – OPS410
+
+This project demonstrates a globally distributed website architecture on Microsoft Azure, with traffic redirection and load balancing across three regions (Canada, Europe, and Middle East). Completed as part of OPS410 at Seneca Polytechnic.
+
+---
+
+## 🧠 Project Goals
+
+- Deploy redundant web servers in two primary regions (Canada, Europe)
+- Implement Round Robin load balancing in each region
+- Configure global traffic redirection based on user proximity
+- Simulate regional failover and ensure automatic rerouting
+- Test using a remote Windows 10 client in a third region (Middle East)
+
+---
+
+## 🗂️ Architecture Overview
+
+![Architecture Diagram](Project-Architecture.jpg)
+
+- Region 1: Canada — `Ca-WebServer1`, `Ca-WebServer2`
+- Region 2: Europe — `Eu-WebServer1`, `Eu-WebServer2`
+- Region 3: Middle East — `Client VM`
+- Traffic Manager or equivalent global routing solution
+- Independent VNets with no peering
+
+---
+
+## ⚙️ Key Resources Deployed
+
+| Resource Type       | Region        | Details                         |
+|---------------------|---------------|----------------------------------|
+| Virtual Machines    | Canada/Europe | IIS/Apache Web Servers           |
+| Virtual Network     | All Regions   | Segmented by region              |
+| Load Balancer       | Canada/Europe | Round Robin algorithm            |
+| Traffic Manager     | Global        | Geographic routing + failover    |
+| Windows 10 Client   | Middle East   | Used to simulate remote access   |
+
+---
+
+## 🧪 Testing & Validation
+
+- Used browser FQDNs to confirm Round Robin switching
+- Refreshed page to alternate between `Server 1` and `Server 2`
+- Shut down both Europe VMs to test failover to Canada
+- Accessed site from Middle East VM to validate geo-routing
+
+---
+
+## 🧼 Clean-up
+
+All Azure resources were deleted post-demo to avoid billing.
+
+---
+
+## 🎓 Course Info
+
+> Project completed for OPS410 – Advanced Cloud Administration  
+> Seneca Polytechnic, Fall 2025
+
